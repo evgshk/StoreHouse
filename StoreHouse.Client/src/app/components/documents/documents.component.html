@@ -1,0 +1,46 @@
+<div class="clearfix">
+  <div class="float-left">
+  <h4>Реестр заявок</h4></div>
+  <div class="float-right">
+  <a routerLink="/document-add"><strong>Добавить</strong></a></div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Грузоотправитель</th>
+          <th>Грузополучатель</th>
+          <th>Номенклатура</th>
+          <th>Количество</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!isDataLoading">
+        <tr *ngFor="let item of data.items; let i = index">
+          <td><strong><a href="#" [routerLink]="['/document', item.id.toLowerCase()]">#{{i+1}}</a></strong></td>
+          <td scope="row"><a href="" [routerLink]="['/warehouse', item.id.toLowerCase()]">{{item.warehouseFrom.name}}</a></td>
+          <td scope="row"><a href="" [routerLink]="['/warehouse', item.id.toLowerCase()]">{{item.warehouseTo.name}}</a></td>
+          <td>
+            <a href="" [routerLink]="['/product', item.id.toLowerCase()]">
+              {{item.product.name}} 
+            </a>
+          </td>
+          <td>{{item.value}}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isDataLoading">
+        <td colspan="8">
+          <div class="container-fluid">
+            <div class="container" align="center">
+              <br>
+              <div class="loader"></div>
+              <br>
+              <p align="center" class="text-muted">пожалуйста, подождите...</p>
+              <br>
+            </div>
+          </div>
+        </td>
+      </tbody>
+      <ng-template #nofieldvalue><a class="text-muted">n/a</a></ng-template>
+    </table>
+  </div>

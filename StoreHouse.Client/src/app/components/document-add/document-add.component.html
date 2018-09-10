@@ -1,0 +1,32 @@
+<h4><a routerLink="/documents">Реестр заявок / </a>Новая заявка</h4>
+<hr>
+<form novalidate #f="ngForm" (submit)="saveChanges()">
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label"><b>Грузоотправитель</b></label>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="model.warehouseFrom" name="model.warehouseFrom" (ngModelChange)="onChangeWarehouseFrom($event)">
+    <option *ngFor="let item of model.warehouseFromDdl" [ngValue]="item">{{item.name}}</option>
+</select>
+    </div>
+    <label for="example-text-input" class="col-2 col-form-label"><b>Грузополучатель</b></label>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="model.warehouseTo" name="model.warehouseTo">
+    <option *ngFor="let item of model.warehouseToDdl" [ngValue]="item">{{item.name}}</option>
+</select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label"><b>Номенклатура</b></label>
+    <div class="col-4">
+      <select class="form-control" [(ngModel)]="model.product" name="model.product">
+    <option *ngFor="let item of model.productDdl" [ngValue]="item">{{item.name}}</option>
+</select>
+    </div>
+    <label for="example-text-input" class="col-2 col-form-label"><b>Количество</b></label>
+    <div class="col-4">
+      <input class="form-control" type="text" [(ngModel)]="model.value" name="model.value">
+    </div>
+  </div>
+  <button role="button" type="submit" class="btn btn-primary btn-bayer-primary">
+                  <strong>Сохранить <i class="fa fa-floppy-o" aria-hidden="true"></i> </strong></button>
+</form>

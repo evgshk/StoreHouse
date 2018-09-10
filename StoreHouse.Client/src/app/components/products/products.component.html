@@ -1,0 +1,39 @@
+<h4>Номенклатура</h4>
+<div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-default">
+        <tr>
+          <th>#</th>
+          <th>Артикул</th>
+          <th>Наименование</th>
+          <th>Описание</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!isDataLoading">
+        <tr *ngFor="let item of data.items; let i = index">
+          <td>{{i+1}}</td>
+          <td scope="row"><a href="" [routerLink]="['/product', item.id.toLowerCase()]">{{item.code}}</a></td>
+          <td>
+            <a href="" [routerLink]="['/product', item.id.toLowerCase()]">
+              {{item.name}} 
+            </a>
+          </td>
+          <td>{{item.description}}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="isDataLoading">
+        <td colspan="8">
+          <div class="container-fluid">
+            <div class="container" align="center">
+              <br>
+              <div class="loader"></div>
+              <br>
+              <p align="center" class="text-muted">пожалуйста, подождите...</p>
+              <br>
+            </div>
+          </div>
+        </td>
+      </tbody>
+      <ng-template #nofieldvalue><a class="text-muted">n/a</a></ng-template>
+    </table>
+  </div>
